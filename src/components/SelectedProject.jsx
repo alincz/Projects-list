@@ -1,13 +1,12 @@
 import React from "react";
-
-// Pentru a face ca proiectele salvate sa fie selectable am nevoie de 
+import Tasks from './Tasks'
+// Pentru a face ca proiectele salvate sa fie selectable am nevoie de
 // 2 lucruri principale: de o componenta noua care va fi utilizata pt a afisa
 // detaliile proiectului selectat si sa ma asigur ca in interiorul compontei
 // ProjectsSidebar primim informatia despre proiectul care a fost selectat
 // pt acea componenta care urmeaza sa fie adaugata.
 
-
-const SelectedProject = ({ project }) => {
+const SelectedProject = ({ project, onDelete }) => {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -21,7 +20,10 @@ const SelectedProject = ({ project }) => {
           <h1 className="text-3xl font-bold text-stone-600 mb-2">
             {project.title}
           </h1>
-          <button className="text-stone-600 hover:text-stone-950">
+          <button
+            className="text-stone-600 hover:text-stone-950"
+            onClick={onDelete}
+          >
             Delete
           </button>
         </div>
@@ -30,6 +32,7 @@ const SelectedProject = ({ project }) => {
           {project.description}
         </p>
       </header>
+      <Tasks/>
     </div>
   );
 };
