@@ -8,7 +8,26 @@ function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  function handleAddTask(text) {
+    setProjectsState((prevState) => {
+      const taskId = Math.random();
+      const newTask = {
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: taskId,
+      };
+
+      return {
+        ...prevState,
+        tasks: [...prevState.tasks, newTask],
+      };
+    });
+  }
+
+  function handleDeleteTask() {}
 
   function handleSelectProject(id) {
     setProjectsState((prevState) => {
@@ -37,7 +56,7 @@ function App() {
     });
   }
 
-  function handleAppProject(projectData) {
+  function handleAddProject(projectData) {
     setProjectsState((prevState) => {
       const projectId = Math.random();
       const newProject = {
@@ -86,11 +105,18 @@ function App() {
   //find este o built-in method in vanilla javascript care ia ca argument
   //o functie care va fi executata pt fiecare element din acest array(projects)
 
-  let content = <SelectedProject project={selectedProject} onDelete={handleDeleProject}/>;
+  let content = (
+    <SelectedProject
+      project={selectedProject}
+      onDelete={handleDeleProject}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+    />
+  );
 
   if (projectsState.selectedProjectId === null) {
     content = (
-      <NewProject onAdd={handleAppProject} onCancel={handleCancelAddProject} />
+      <NewProject onAdd={handleAddProject} onCancel={handleCancelAddProject} />
     );
     // onAdd-cu el am facut lift state up ,pt a duce date din App in
     // NewProject

@@ -1,12 +1,12 @@
 import React from "react";
-import Tasks from './Tasks'
+import Tasks from "./Tasks";
 // Pentru a face ca proiectele salvate sa fie selectable am nevoie de
 // 2 lucruri principale: de o componenta noua care va fi utilizata pt a afisa
 // detaliile proiectului selectat si sa ma asigur ca in interiorul compontei
 // ProjectsSidebar primim informatia despre proiectul care a fost selectat
 // pt acea componenta care urmeaza sa fie adaugata.
 
-const SelectedProject = ({ project, onDelete }) => {
+const SelectedProject = ({ project, onDelete, onAddTask, onDeleteTask }) => {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -32,7 +32,7 @@ const SelectedProject = ({ project, onDelete }) => {
           {project.description}
         </p>
       </header>
-      <Tasks/>
+      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} />
     </div>
   );
 };
