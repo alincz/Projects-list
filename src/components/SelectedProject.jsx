@@ -9,7 +9,13 @@ import Tasks from "./Tasks";
 
 //onAddTask si onDeleteTask sunt preluate din componenta parinte SelectedProject
 //care se afla in App component si sunt custom properties
-const SelectedProject = ({ project, onDelete, onAddTask, onDeleteTask }) => {
+const SelectedProject = ({
+  project,
+  onDelete,
+  onAddTask,
+  onDeleteTask,
+  tasks,
+}) => {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
@@ -35,7 +41,7 @@ const SelectedProject = ({ project, onDelete, onAddTask, onDeleteTask }) => {
           {project.description}
         </p>
       </header>
-      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} />
+      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks}/>
     </div>
   );
 };

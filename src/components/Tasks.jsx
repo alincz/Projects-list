@@ -16,12 +16,13 @@ const Tasks = ({ tasks, onAdd, onDelete }) => {
           <ul className="p-4 mt-8 rounded-md bg-stone-100">
             {tasks.map((task) => (
               <li key={task.id} className="flex justify-between my-4">
-                <span>{task}</span>
-              <button>Clear</button>
+                <span>{task.text}</span>
+                <button className="text-stone-700 hover:text-red-500">
+                  Clear
+                </button>
               </li>
             ))}
             {/* pt a afisa sarcinile in <ul></ul> folosesc metoda map */}
-           
           </ul>
         )}
       </section>
