@@ -12,6 +12,7 @@ const NewTask = ({ onAdd }) => {
   function handleClick() {
     onAdd(enteredTask);
     setEnteredTask("");
+
   }
 
   return (

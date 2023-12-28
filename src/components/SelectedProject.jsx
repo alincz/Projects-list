@@ -5,7 +5,10 @@ import Tasks from "./Tasks";
 // detaliile proiectului selectat si sa ma asigur ca in interiorul compontei
 // ProjectsSidebar primim informatia despre proiectul care a fost selectat
 // pt acea componenta care urmeaza sa fie adaugata.
+//____________________________________________________
 
+//onAddTask si onDeleteTask sunt preluate din componenta parinte SelectedProject
+//care se afla in App component si sunt custom properties
 const SelectedProject = ({ project, onDelete, onAddTask, onDeleteTask }) => {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
