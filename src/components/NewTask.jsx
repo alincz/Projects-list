@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const NewTask = ({ onAdd }) => {
-  const [enteredTask, setEnteredTask] = useState();
+  const [enteredTask, setEnteredTask] = useState('');
   //  cu acest useState luam datele din input cand apasam pe buton
 
   function handleChange(event) {
@@ -10,6 +10,11 @@ const NewTask = ({ onAdd }) => {
   }
 
   function handleClick() {
+   //acest lucra face ca sa nu putem adauga un task cand dam click pe Add Task,
+  //  daca input ul este gol 
+    if(enteredTask.trim() === ''){
+      return;
+    }
     onAdd(enteredTask);
     setEnteredTask("");
 

@@ -17,7 +17,15 @@ const Tasks = ({ tasks, onAdd, onDelete }) => {
             {tasks.map((task) => (
               <li key={task.id} className="flex justify-between my-4">
                 <span>{task.text}</span>
-                <button className="text-stone-700 hover:text-red-500">
+                <button
+                  className="text-stone-700 hover:text-red-500"
+                  onClick={() => onDelete(task.id)}
+                  //aici nu a fost suficient sa pun trasnmit onDelete
+                  //catre onClick pt ca daca as face acest lucru nu am trece
+                  //id-ul de la aceasta functie la handleDeleteTask si am
+                  //nevoie de mai mult control si am invelit totul cu o functie a.i sa
+                  //am control deplin asupra modului in care se executa
+                >
                   Clear
                 </button>
               </li>

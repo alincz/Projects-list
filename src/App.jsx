@@ -27,7 +27,19 @@ function App() {
     });
   }
 
-  function handleDeleteTask() {}
+  //asta e functia folosita pt a sterge un task, dupa ce dai click pe
+  // un proiect salvat din sidebar si apoi creezi un nou task,
+  //dai click pe Add Task
+  // o sa apara sub forma de <ul></ul> task-urile create
+  function handleDeleteTask(id) {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        tasks: prevState.tasks.filter((task) => task.id !== id),
+      };
+    });
+  }
 
   function handleSelectProject(id) {
     setProjectsState((prevState) => {
@@ -82,11 +94,11 @@ function App() {
         selectedProjectId: undefined,
         projects: prevState.projects.filter(
           (project) => project.id !== prevState.selectedProjectId
-          // fac update array ului projects,printr un modalitate imuutable ca sa
+          // fac update array ului projects,printr o modalitate imuutable ca sa
           // nu modific array ul original din memorie si modalitatea prin care
           // fac asta este prin utilizarea prevState.projects-adica iau proiectele
           // stocate din prevState,dupa folosesc filter care primeste o functie,
-          // iar aceasta functie se va executa pt fiecare fiecare item din array-ul
+          // iar aceasta functie se va executa pt fiecare item din array-ul
           // projects si returneaza true daca un element trebuie pastrat si false daca trebuie
           // eliminat si apoi returneaza un array complet nou care contine numai
           // elementele care nu au fost eliminate. cu argumentul project returnez
@@ -131,6 +143,7 @@ function App() {
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
         onSelectProject={handleSelectProject}
+        selectedProjectId={projectsState.selectedProjectId}
       />
       {/* am pus projectsState.projects,pt ca este vorba de array-ul de proiecte
       pe care il gestionez in state si acum trasmit acest lucru prin intermediul
